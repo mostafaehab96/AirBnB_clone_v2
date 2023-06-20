@@ -16,14 +16,12 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-classes = {"Amenity": Amenity, "City": City,
-           "Place": Place, "Review": Review, "State": State, "User": User}
-
 
 class DBStorage:
     """interaacts with the MySQL database"""
     __engine = None
     __session = None
+    classes = [City, State]
 
     def __init__(self):
         """Instantiate a DBStorage object"""
@@ -42,14 +40,19 @@ class DBStorage:
 
     def all(self, cls=None):
         """query on the current database session"""
-        new_dict = {}
-        for clss in classes:
-            if cls is None or cls is classes[clss] or cls is clss:
-                objs = self.__session.query(classes[clss]).all()
-                for obj in objs:
-                    key = obj.__class__.__name__ + '.' + obj.id
-                    new_dict[key] = obj
-        return (new_dict)
+        objs = []
+        dct = {}
+        if cls is None:
+            for item in self.classes:
+                objs.extend(self.__session.query(item).all())
+        else:
+            if type(cls) is str:
+                cls = eval(cls)
+            objs = self.__session.query(cls).all()
+
+        for obj in objs:
+            dct[obj.__class__.__name__ + '.' + obj.id] = obj
+        return dct
 
     def new(self, obj):
         """add the object to the current database session"""
