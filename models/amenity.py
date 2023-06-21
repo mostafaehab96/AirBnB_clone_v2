@@ -3,7 +3,6 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
-from models.place import place_amenity
 
 
 class Amenity(BaseModel, Base):
@@ -11,6 +10,7 @@ class Amenity(BaseModel, Base):
     from models import storage_t
     __tablename__ = "amenities"
     if storage_t == "db":
+        from models.place import place_amenity
         name = Column(String(128), nullable=False)
         place_amenities = relationship("Place", secondary=place_amenity,
                                        back_populates="amenities")
