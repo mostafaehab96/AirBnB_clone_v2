@@ -21,8 +21,8 @@ my_configs="
 		}
 	}
 "
-#sudo apt-get -y update
-#sudo apt-get -y install nginx
+sudo apt-get -y update
+sudo apt-get -y install nginx
 sudo mkdir -p /data/
 sudo mkdir -p /data/web_static/
 sudo mkdir -p /data/web_static/releases/
