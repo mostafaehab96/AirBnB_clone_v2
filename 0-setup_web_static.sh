@@ -20,8 +20,10 @@ my_configs="
 		}
 	}
 "
-sudo apt-get -y update
-sudo apt-get -y install nginx
+if ! command -v nginx &> /dev/null; then
+    sudo apt-get update
+    sudo apt-get install nginx
+fi
 sudo mkdir -p /data/
 sudo mkdir -p /data/web_static/
 sudo mkdir -p /data/web_static/releases/
