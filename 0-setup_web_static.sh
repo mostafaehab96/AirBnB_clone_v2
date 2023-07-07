@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 #Installs nginx and deploy web_static
 
-my_html="
-<html>
+my_html="<html>
   <head>
   </head>
   <body>
     Holberton School
   </body>
-</html>
-"
+</html>"
+
 my_configs="
 
 	server { 
@@ -34,3 +33,4 @@ sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 sudo sed -i '/^http {/r /dev/stdin' /etc/nginx/nginx.conf <<< "$my_configs"
 sudo sed -i '/sites-enabled/d' /etc/nginx/nginx.conf
 sudo nginx -s reload
+
