@@ -12,12 +12,11 @@ def do_pack():
     """
     time = datetime.now()  # For renaming the file
     time = time.strftime("%Y%m%d%H%M%S")
-    filename = f"web_static_{time}.tgz"
+    filepath = f"versions/web_static_{time}.tgz"
 
-    local('mkdir -p versions')  # Make the file version if not exist
-    result = local(f'tar -czvf versions/{filename} web_static')
-
-    if result.succeeded:
-        return f"versions/{filename}"
-    else:
-        None
+    try:
+        local('mkdir -p versions')  # Make the file version if not exist
+        local(f'tar -czvf {filepath} web_static')
+        return filepath
+    except:
+        return None
