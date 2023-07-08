@@ -3,6 +3,7 @@
 
 from fabric.api import local
 from datetime import datetime
+from os import makedirs
 
 
 def do_pack():
@@ -15,7 +16,7 @@ def do_pack():
     filepath = f"versions/web_static_{time}.tgz"
 
     try:
-        local('mkdir -p versions')  # Make the file version if not exist
+        makedirs("./versions", exist_ok=True)
         local(f'tar -czvf {filepath} web_static')
         return filepath
     except:
