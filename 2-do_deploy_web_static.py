@@ -18,11 +18,10 @@ def do_deploy(archive_path):
     if archive_path is None or not path.exists(archive_path):
         return False
 
-    filename = archive_path.split('/')[1]  # Filename
-    just_name = filename.split('.')[0]  # Filename without extension
-    destpath = "/data/web_static/releases/{}".format(just_name)
-
     try:
+        filename = archive_path.split('/')[1]  # Filename
+        just_name = filename.split('.')[0]  # Filename without extension
+        destpath = "/data/web_static/releases/{}".format(just_name)
         put(archive_path, '/tmp/')
         run("mkdir -p {}".format(destpath))
         run("tar xzf /tmp/{} -C {}".format(filename, destpath))
