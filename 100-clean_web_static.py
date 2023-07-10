@@ -27,7 +27,7 @@ def do_clean(number=0):
             if number > 1 and count > number:
                 for i in range(count - number):
                     local('rm versions/{}'.format(archives[i]))
-            elif count > 1:
+            elif count > 1 and count > number:
                 for i in range(count - 1):
                     local('rm versions/{}'.format(archives[i]))
             did_run = True
@@ -43,11 +43,11 @@ def do_clean(number=0):
         count = len(archives)
         number = int(number)
 
-        # Deletes all - number archives in local
+        # Deletes all - number archives in remote
         if number > 1 and count > number:
             for i in range(count - number):
                 run('rm -rf {}/{}'.format(remote, archives[i]))
-        elif count > 1:
+        elif count > 1 and count > number:
             for i in range(count - 1):
                 run('rm -rf {}/{}'.format(remote, archives[i]))
     except Exception:
