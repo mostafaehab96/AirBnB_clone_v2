@@ -1,4 +1,4 @@
-#!/user/bin/python3
+#!/usr/bin/python3
 
 """The first flask task just returns a simple word in the root /"""
 from flask import Flask
