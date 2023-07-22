@@ -7,7 +7,6 @@ from models import storage
 from models.state import State
 
 app = Flask(__name__)
-states = storage.all(State).values()
 
 
 @app.teardown_appcontext
@@ -19,6 +18,7 @@ def close_db(exception):
 @app.route("/states_list", strict_slashes=False)
 def list_states():
     """Display list of states in database."""
+    states = storage.all(State).values()
     return render_template("7-states_list.html", states=states)
 
 
