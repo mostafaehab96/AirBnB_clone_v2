@@ -9,7 +9,8 @@ from sqlalchemy.orm import relationship
 class User(BaseModel, Base):
     """This class defines a user by various attributes"""
     __tablename__ = "users"
-
+    __table_args__ = (
+        {'mysql_default_charset': 'latin1'})
     if models.storage_t == "db":
         email = Column(String(128), nullable=False)
         password = Column(String(128), nullable=False)

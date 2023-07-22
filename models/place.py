@@ -13,13 +13,17 @@ if getenv("HBNB_TYPE_STORAGE") == "db":
             Column("place_id", String(60), ForeignKey("places.id"),
                    primary_key=True, nullable=False),
             Column("amenity_id", String(60), ForeignKey("amenities.id"),
-                   primary_key=True, nullable=False))
+                   primary_key=True, nullable=False),
+            mysql_charset="latin1"
+            )
 
 
 class Place(BaseModel, Base):
     """ A place to stay """
     import models
     __tablename__ = "places"
+    __table_args__ = ({'mysql_default_charset': 'latin1'})
+
     if models.storage_t == "db":
         city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
         user_id = Column(String(60), ForeignKey('users.id'), nullable=False)
