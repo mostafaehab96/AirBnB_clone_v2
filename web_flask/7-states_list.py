@@ -18,6 +18,7 @@ def close_db(exception):
 
 @app.route("/states_list", strict_slashes=False)
 def list_states():
+    """Display list of states in database."""
     return render_template("7-states_list.html", states=states)
 
 
