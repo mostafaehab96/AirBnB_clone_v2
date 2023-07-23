@@ -47,6 +47,8 @@
   padding-bottom: 20px;
   display: none;
   position: relative;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 h3 {

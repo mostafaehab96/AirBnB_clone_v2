@@ -10,3 +10,22 @@ body {
   max-width: 1000px;
   margin: 30px auto;
 }
+
+.places {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.places h1 {
+  font-size: 30px;
+  margin: 0;
+  padding-top: 30px;
+  padding-left: 30px;
+  flex: 0 0 100%;
+}
+
+.places h2 {
+  font-size: 30px;
+  margin: 0;
+}
